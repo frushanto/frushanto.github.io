@@ -4,6 +4,8 @@ import { siteConfig } from "../config";
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
 const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+const hasLanguages = siteConfig.languages && siteConfig.languages.length > 0;
+const hasHobbies = siteConfig.hobbies && siteConfig.hobbies.length > 0;
 ---
 
 <header
@@ -20,6 +22,18 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
           About
         </a>
       </li>
+      {
+        hasLanguages && (
+          <li>
+            <a
+              href="#languages"
+              class="text-gray-700 hover:text-black transition-colors font-medium"
+            >
+              Languages
+            </a>
+          </li>
+        )
+      }
       {
         hasProjects && (
           <li>
@@ -52,6 +66,18 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
               class="text-gray-700 hover:text-black transition-colors font-medium"
             >
               Education
+            </a>
+          </li>
+        )
+      }
+      {
+        hasHobbies && (
+          <li>
+            <a
+              href="#hobbies"
+              class="text-gray-700 hover:text-black transition-colors font-medium"
+            >
+              Hobbies
             </a>
           </li>
         )
