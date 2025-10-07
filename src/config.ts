@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Ivan Kozlov / @frushanto",
   title: "Embedded Systems Engineer",
-  titleDisplay: "(not only) Embedded Software Engineer",
+  titleDisplay: "(not only) Embedded Systems Engineer",
   description: "Portfolio website of Ivan Kozlov",
   accentColor: "#1d4ed8",
   social: {
