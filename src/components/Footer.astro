@@ -4,6 +4,8 @@ import { siteConfig } from "../config";
 const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
 const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+const hasLanguages = siteConfig.languages && siteConfig.languages.length > 0;
+const hasHobbies = siteConfig.hobbies && siteConfig.hobbies.length > 0;
 ---
 
 <footer class="relative bg-gray-50 border-t border-gray-200">
@@ -105,6 +107,16 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
             >About</a
           >
           {
+            hasLanguages && (
+              <a
+                href="#languages"
+                class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
+              >
+                Languages
+              </a>
+            )
+          }
+          {
             hasProjects && (
               <a
                 href="#projects"
@@ -131,6 +143,16 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                 class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
               >
                 Education
+              </a>
+            )
+          }
+          {
+            hasHobbies && (
+              <a
+                href="#hobbies"
+                class="text-sm text-gray-600 hover:text-gray-800 transition-colors"
+              >
+                Hobbies
               </a>
             )
           }
