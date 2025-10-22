@@ -80,14 +80,15 @@ export const siteConfig = {
       title: "Embedded Systems Engineer",
       dateRange: "Oct 2021 – Present | Erlangen, Germany",
       bullets: [
-        "Leading the design and development of embedded software architecture for battery management and control systems based on ARM Cortex-M microcontrollers.",
-        "Developing WPF desktop applications in .NET C# for automated testing, configuration management, and firmware update routines of embedded products.",
-        "Implementing CI/CD pipelines to automate build, test, and release workflows for both firmware and desktop tools.",
-        "Designing comprehensive verification strategies, from unit and integration testing to hardware-in-the-loop and end-of-line validation.",
-        "Supporting hardware commissioning, calibration, and production ramp-up to ensure reliability and compliance with EN 50128/50657 and EN 50129 standards.",
-        "Competencies: C++, C#, .NET, WPF, embedded software architecture, firmware development, RTOS, debugging, CI/CD, software testing, Git, calibration, end-of-line & hardware-in-the-loop testing, hardware-software integration, communication protocols (CAN, UART, I²C, SPI, BLE, ETH)."
+        "Architecting and developing embedded software for next-generation locomotive battery management and control systems based on ARM Cortex-M microcontrollers.",
+        "Designing WPF desktop applications in .NET C# as part of a unified test and configuration ecosystem for embedded devices, including automated firmware update workflows.",
+        "Establishing CI/CD pipelines and test automation infrastructure to enable reproducible builds, continuous verification, and long-term software maintainability.",
+        "Defining software validation strategies and implementing multi-level testing — from unit and integration to hardware-in-the-loop and end-of-line verification.",
+        "Collaborating across hardware, production, and quality teams to ensure calibration accuracy, manufacturing readiness, and compliance with EN 50128/50657 and EN 50129 standards.",
+        "Competencies: C++, C#, .NET, WPF, embedded software architecture, firmware development, RTOS, debugging, CI/CD, software testing, Git, calibration, end-of-line & hardware-in-the-loop testing, hardware-software integration, communication protocols (CAN, UART, I²C)."
       ],
     },
+
     {
       company: "Siemens Mobility GmbH",
       title: "Embedded Systems Developer (Master Thesis)",
