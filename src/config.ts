@@ -80,10 +80,12 @@ export const siteConfig = {
       title: "Embedded Systems Engineer",
       dateRange: "Oct 2021 – Present | Erlangen, Germany",
       bullets: [
-        "Developed and commissioned an embedded battery management system for real-time monitoring of onboard batteries, based on ARM Cortex-M7 chip.",
-        "Designed and executed the end-of-line process, fine-tuning the calibration of the battery management system to ensure its readiness for mass production.",
-        "Accomplished certification of the battery management system according to the industry standards EN 50128/50657 and EN 50129.",
-        "Competencies: C++, C#, software architecture, RTOS, debugging, software testing, git, calibration, end-of-line testing, hardware commissioning, software certification, communication protocols.",
+        "Leading the design and development of embedded software architecture for battery management and control systems based on ARM Cortex-M microcontrollers.",
+        "Developing WPF desktop applications in .NET C# for automated testing, configuration management, and firmware update routines of embedded products.",
+        "Implementing CI/CD pipelines to automate build, test, and release workflows for both firmware and desktop tools.",
+        "Designing comprehensive verification strategies, from unit and integration testing to hardware-in-the-loop and end-of-line validation.",
+        "Supporting hardware commissioning, calibration, and production ramp-up to ensure reliability and compliance with EN 50128/50657 and EN 50129 standards.",
+        "Competencies: C++, C#, .NET, WPF, embedded software architecture, firmware development, RTOS, debugging, CI/CD, software testing, Git, calibration, end-of-line & hardware-in-the-loop testing, hardware-software integration, communication protocols (CAN, UART, I²C, SPI, BLE, ETH)."
       ],
     },
     {
