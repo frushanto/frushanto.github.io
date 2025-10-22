@@ -10,7 +10,7 @@ export const siteConfig = {
     github: "https://github.com/frushanto",
   },
   aboutMe:
-    "Pragmatic and results-driven embedded engineer with 7+ years of experience in rail and automotive domains. Specialized in embedded software architecture, test automation, and product lifecycle development — from firmware and tooling to calibration and certification. Passionate about building reliable, maintainable, and transparent software systems that bridge embedded and desktop environments.",
+    "Pragmatic and results-driven embedded engineer with 7+ years of experience in rail and automotive domains. Specialized in embedded software architecture, test automation, and product lifecycle development — from firmware and tooling to calibration and certification. Dedicated to designing reliable and maintainable embedded software architectures, complemented by desktop testing and tooling solutions for efficient validation and deployment.",
   skills: [
     // Core Development
     "C",
