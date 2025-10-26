@@ -1,0 +1,48 @@
+---
+import { getSiteContent } from "../content/utils";
+import { t, type Language } from "../i18n/utils";
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = 'en' } = Astro.props as Props;
+const siteContent = await getSiteContent(lang);
+---
+
+<section id="hobbies" class="p-8 sm:p-12 md:p-16 lg:p-24">
+  <div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+      <div class="lg:col-span-4">
+        <h2
+          class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900"
+        >
+          {t(lang, 'sections.hobbies')}
+        </h2>
+        <div
+          class="w-[75px] h-[5px] mt-2 rounded-full"
+          style={`background-color: ${siteContent.accentColor}`}
+        >
+        </div>
+      </div>
+
+      <div class="lg:col-span-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {
+            siteContent.hobbies.map((hobby) => (
+              <div class="flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200">
+                <div
+                  class="w-2 h-2 rounded-full flex-shrink-0"
+                  style={`background-color: ${siteContent.accentColor}`}
+                />
+                <span class="text-base sm:text-lg md:text-xl text-gray-800 font-medium">
+                  {hobby}
+                </span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

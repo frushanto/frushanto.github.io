@@ -1,0 +1,27 @@
+{
+  "nav": {
+    "expertise": "Expertise",
+    "experience": "Experience",
+    "languages": "Languages",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hello! 👋"
+  },
+  "sections": {
+    "expertise": "Expertise & Services",
+    "experience": "Experience",
+    "languages": "Languages"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "heading": "404 - Oops! 🤔",
+    "message": "It looks like you've ventured into unknown territory.",
+    "description": "The page you're looking for doesn't exist. But don't worry, you can always return home!",
+    "backHome": "Back to Home"
+  },
+  "footer": {
+    "imprint": "Imprint",
+    "privacy": "Privacy"
+  }
+}

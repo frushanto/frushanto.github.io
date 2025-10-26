@@ -1,0 +1,117 @@
+---
+import type { Language } from '../i18n/utils';
+import { getSiteContent } from '../content/utils';
+import { locales, getDefaultLocale, getLocaleConfig } from '../config/locales';
+import { buildAbsoluteUrl, buildLocalizedUrl } from '../config/shared';
+import { tokensToCss } from '../design';
+import '../styles/global.css';
+
+interface Props {
+  lang: Language;
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const { lang, title, description, ogImage } = Astro.props as Props;
+const siteContent = await getSiteContent(lang);
+
+const designTokenStyles = tokensToCss();
+
+const fullTitle = title ? `${title} - ${siteContent.name}` : `${siteContent.name} - ${siteContent.title}`;
+const fullDescription = description || siteContent.description;
+const localeConfig = getLocaleConfig(lang);
+const canonicalUrl = buildLocalizedUrl(lang);
+const alternateLinks = locales.map((locale) => ({
+  hrefLang: locale.hrefLang,
+  url: buildLocalizedUrl(locale.code),
+}));
+const defaultLocale = getDefaultLocale();
+const defaultAlternateUrl = buildLocalizedUrl(defaultLocale.code);
+const defaultOgImageUrl = buildAbsoluteUrl('/og.png');
+const ogImageUrl = ogImage ? buildAbsoluteUrl(ogImage) : defaultOgImageUrl;
+const hasHeadSlot = Astro.slots.has('head');
+---
+
+<!doctype html>
+<html lang={localeConfig.hrefLang}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Alternate Language Links -->
+    {alternateLinks.map((alternate) => (
+      <link rel="alternate" hreflang={alternate.hrefLang} href={alternate.url} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={defaultAlternateUrl} />
+
+    <!-- Open Graph Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={fullDescription} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={localeConfig.ogLocale} />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={fullDescription} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: siteContent.name,
+      url: canonicalUrl,
+      image: ogImageUrl,
+      description: fullDescription,
+      jobTitle: siteContent.title,
+      sameAs: [
+        siteContent.social?.github || '',
+      ].filter(Boolean),
+      contact: siteContent.social?.email
+        ? {
+            '@type': 'ContactPoint',
+            contactType: 'Personal',
+            email: siteContent.social.email
+          }
+        : undefined,
+    })}></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    {hasHeadSlot ? (
+      <slot name="head" />
+    ) : (
+      <Fragment>
+        <meta name="description" content={fullDescription} />
+        <title>{fullTitle}</title>
+      </Fragment>
+    )}
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <slot />
+  </body>
+</html>
+
+<style is:global set:html={designTokenStyles}></style>
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>

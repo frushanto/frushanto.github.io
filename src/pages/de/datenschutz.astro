@@ -1,0 +1,68 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const lang = 'de';
+---
+
+<BaseLayout lang={lang} title="Datenschutz">
+  <Header lang={lang} showHome={true} isStaticPage={true} />
+  <main class="flex-grow bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-16 lg:px-8">
+      <article class="prose prose-gray max-w-none">
+        <h1 class="text-4xl font-bold text-gray-900 mb-8">Datenschutzerklärung</h1>
+        
+        <p class="text-sm text-gray-500 mb-8">
+          Stand: 2026-01-19
+        </p>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">1. Verantwortlicher</h2>
+          <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+            <p class="text-gray-700">Ivan Kozlov</p>
+            <!-- <p class="text-gray-700">Anschrift: Straße, PLZ Stadt, Deutschland</p> -->
+            <p class="text-gray-700">
+              E-Mail: <a href="mailto:frushanto@gmail.com" class="text-blue-600 hover:underline">frushanto@gmail.com</a>
+            </p>
+          </div>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">2. Hosting (GitHub Pages)</h2>
+          <p class="text-gray-700 mb-4">
+            Diese Website wird über GitHub Pages gehostet. Beim Zugriff auf die Website können technisch notwendige Daten verarbeitet werden (z. B. IP-Adresse, Zeitstempel, angeforderte Seite, User-Agent), um die Website bereitzustellen und die Sicherheit und Stabilität zu gewährleisten.
+          </p>
+          <p class="text-gray-700">
+            <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse)
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">3. Cookies / Tracking</h2>
+          <p class="text-gray-700">
+            Auf dieser Website werden keine Analyse-, Marketing-Pixel oder Tracking-Cookies verwendet.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">4. Kontakt</h2>
+          <p class="text-gray-700 mb-4">
+            Wenn Sie mich per E-Mail kontaktieren, werden Ihre Daten (E-Mail-Adresse, Nachrichteninhalt) verarbeitet, um Ihre Anfrage zu bearbeiten.
+          </p>
+          <p class="text-gray-700">
+            <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b oder Art. 6 Abs. 1 lit. f DSGVO
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">5. Ihre Rechte</h2>
+          <p class="text-gray-700">
+            Sie haben DSGVO-Rechte, einschließlich Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerspruch und das Recht, Beschwerde bei einer Aufsichtsbehörde einzulegen.
+          </p>
+        </section>
+      </article>
+    </div>
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>

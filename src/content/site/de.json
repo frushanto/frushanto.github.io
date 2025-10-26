@@ -1,0 +1,118 @@
+{
+  "name": "Ivan Kozlov / @frushanto",
+  "title": "Softwarearchitekt & Embedded/.NET-Berater",
+  "titleDisplay": "Softwarearchitekt & Embedded/.NET-Berater",
+  "description": "Softwarearchitektur- und Embedded/.NET-Consulting – Architektur-Reviews, Firmware, WPF-Tooling, ASP.NET-Core-Backends, Testautomatisierung, CI/CD.",
+  "accentColor": "#1d4ed8",
+  "social": {
+    "email": "frushanto@gmail.com",
+    "linkedin": "https://linkedin.com/in/i-kozlov",
+    "github": "https://github.com/frushanto"
+  },
+  "aboutMe": "Ich helfe Teams, zuverlässige Software zu entwerfen, auszuliefern und weiterzuentwickeln – von Embedded-Firmware-Architekturen bis zu .NET-Desktop- und Websystemen. Mein Fokus liegt auf pragmatischer Softwarearchitektur, klaren Schnittstellen, Testbarkeit und Delivery-Pipelines, die Produkte über Jahre wartbar halten. Ich unterstütze Kunden bei Architektur-Reviews, Feature-Entwicklung, Refactoring, Testautomatisierung, CI/CD sowie beim Bau interner Tools (WPF) und Web-Backends (ASP.NET).",
+  "skills": [
+    "Softwarearchitektur & Systemdesign (Embedded + Backend + Desktop)",
+    "Embedded-Entwicklung (C/C++), ARM Cortex-M/R, Bare-Metal & RTOS",
+    ".NET-Entwicklung (C#): WPF-Desktop-Apps, ASP.NET Core Web-Apps/APIs",
+    "Testautomatisierung: Unit/Integration, Hardware-gestütztes Testen, Tooling",
+    "CI/CD, reproduzierbare Builds, Release-Automatisierung",
+    "Debugging & Performance-Analyse (JTAG/SWD, Tracing, Profiling)",
+    "Schnittstellen & Integration: CAN/CAN-FD, UART, SPI, I2C, Ethernet, BLE",
+    "Secure-by-Design-Mindset für Web/Services (Rate Limiting, Auth, Hardening)",
+    "Modernisierung von Codebasen: Refactoring, Modularisierung, Abhängigkeitsgrenzen",
+    "PCB- & Schaltungsdesign (Altium) für HW/SW-Integration (optional)"
+  ],
+  "languages": [
+    { "name": "Russisch", "proficiency": "Muttersprache" },
+    { "name": "Deutsch", "proficiency": "C2 - Verhandlungssicher" },
+    { "name": "Englisch", "proficiency": "C1 - Fortgeschritten" }
+  ],
+  "projects": [
+    {
+      "name": "News-Aggregator — ASP.NET Core, PostgreSQL, sichere Ingestion & UI",
+      "description": "Modernes News-Aggregationssystem mit .NET 10, PostgreSQL und ASP.NET Core Razor Pages. Sammelt Inhalte aus RSS/Atom, Telegram-Kanälen und Reddit mit geplanter Ingestion und Deduplizierung. Beinhaltet Admin-Tooling, Infinite-Scroll-UI und produktionsreife Absicherung (Rate Limiting, CAPTCHA, Bot-Erkennung).",
+      "link": "https://catisquo.com",
+      "skills": [
+        ".NET 10",
+        "ASP.NET Core",
+        "PostgreSQL",
+        "Razor Pages",
+        "Entity Framework Core",
+        "Hangfire",
+        "Security Engineering"
+      ]
+    },
+    {
+      "name": "Telegram Weather Bot — Asynchroner Python-Service mit Clean Architecture",
+      "description": "Open-Source-Telegram-Bot für Echtzeitwetter mit Subscriptions, Mehrsprachigkeit und Spam-Schutz. Gebaut nach Clean-Architecture-Prinzipien und testgetrieben, um Wartbarkeit und Skalierbarkeit sicherzustellen.",
+      "link": "https://github.com/frushanto/telegram-weather-bot-pub",
+      "skills": [
+        "Python",
+        "Async",
+        "Clean Architecture",
+        "Testing",
+        "Service Design"
+      ]
+    },
+    {
+      "name": "Sicherheitskritische Embedded-Plattform — Architektur, Tooling & Delivery",
+      "description": "Leitung der Embedded-Softwarearchitektur für eine langlebige Produktplattform mit Fokus auf Modularität, Testbarkeit und Wartbarkeit. Aufbau begleitender .NET-Tools für Konfiguration, automatisierte Tests und Firmware-Update-Workflows, um Engineering-Routinen reproduzierbar zu machen. Qualitätssteigerung durch CI/CD, strukturierte Verifikation und pragmatisches Refactoring für Skalierbarkeit.",
+      "skills": [
+        "C/C++",
+        "ARM Cortex-M",
+        "RTOS",
+        ".NET",
+        "C#",
+        "WPF",
+        "CI/CD",
+        "Testautomatisierung",
+        "Debugging",
+        "Systemintegration"
+      ]
+    },
+    {
+      "name": "WPF-Engineering-Toolkit — Automatisierung, Konfiguration & Test-Orchestrierung",
+      "description": "Entwicklung einer WPF-Desktop-Suite zur Automatisierung wiederkehrender Engineering-Workflows: Gerätekonfiguration, Testdurchführung, Log-Erfassung sowie Release-/Firmware-Update-Schritte. Modular aufgebaut mit per DI ladbaren Plugins und Bibliotheken, um Erweiterbarkeit und Wartbarkeit sicherzustellen, und in CI/CD-Pipelines integriert für konsistente Ergebnisse über Umgebungen hinweg.",
+      "skills": [
+        "C#",
+        ".NET",
+        "WPF",
+        "MVVM",
+        "Automatisierung",
+        "CI/CD",
+        "Testing",
+        "UX für Engineering-Tools"
+      ]
+    },
+    {
+      "name": "Embedded Bring-up & Low-Level-Treiber — Stabile Schnittstellen & Diagnostik",
+      "description": "Implementierung von Low-Level-Firmwarekomponenten und Diagnostik für stabiles Bring-up und zuverlässige Kommunikation mit Peripherie. Aufbau reproduzierbarer Debug-Workflows (Instrumentierung, Logging, Tracing) und Härtung des Codes für Wartbarkeit durch klare Abstraktionen und gezielte Integrationstests.",
+      "skills": [
+        "C/C++",
+        "Bare-Metal",
+        "RTOS",
+        "Low-Level-Treiber",
+        "Debugging",
+        "SPI/I2C/UART",
+        "Diagnostik",
+        "Integrationstests"
+      ]
+    },
+    {
+      "name": "foxBMS 2 — Mikrocontroller-Portierung & Bare-Metal-Grundlagen (Open Source)",
+      "description": "Beitrag zu einer Open-Source-Embedded-Plattform durch Implementierung von Bare-Metal-Grundlagen und Bring-up-Komponenten. Fokus auf robuste Low-Level-Bausteine und Integrationsbereitschaft statt domänenspezifischer Features.",
+      "link": "https://github.com/foxBMS/foxbms-2",
+      "skills": [
+        "C",
+        "ARM Cortex-R",
+        "Bare-Metal",
+        "Low-Level-Treiber",
+        "Debugging",
+        "Toolchain"
+      ]
+    }
+  ],
+  "experience": [],
+  "education": [],
+  "hobbies": []
+}

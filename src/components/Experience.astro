@@ -1,0 +1,108 @@
+---
+import { getSiteContent } from "../content/utils";
+import { t, type Language } from "../i18n/utils";
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = 'en' } = Astro.props as Props;
+const siteContent = await getSiteContent(lang);
+const hasExperience = siteContent.projects && siteContent.projects.length > 0;
+const experienceItems = siteContent.projects || [];
+const caseLabel = lang === 'de' ? 'Erfahrung' : 'Experience';
+const linkLabel = lang === 'de' ? 'Mehr erfahren' : 'Open link';
+---
+
+{
+  hasExperience && (
+    <section id="experience" class="p-8 sm:p-12 md:p-16 lg:p-24">
+      <div>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+          <div class="lg:col-span-4">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+              {t(lang, 'sections.experience')}
+            </h2>
+            <div
+              class="w-[75px] h-[5px] mt-2 rounded-full"
+              style={`background-color: ${siteContent.accentColor}`}
+            />
+          </div>
+
+          <div class="lg:col-span-8">
+            <div class="space-y-8">
+              {experienceItems.map((item, index) => {
+                const isLinkedIn = typeof item.link === 'string' && item.link.includes('linkedin.com');
+                const effectiveLink = !isLinkedIn && item.link ? item.link : null;
+                const Component = effectiveLink ? 'a' : 'div';
+                const linkProps = effectiveLink
+                  ? { href: effectiveLink, target: '_blank', rel: 'noopener noreferrer' }
+                  : {};
+
+                return (
+                  <Component
+                    {...linkProps}
+                    class={`group block relative p-4 sm:p-6 md:p-8 bg-gray-50 rounded-xl sm:rounded-2xl border border-gray-200 transition-all duration-300 ${
+                      item.link
+                        ? 'hover:bg-white hover:shadow-xl hover:border-gray-300 hover:-translate-y-1'
+                        : ''
+                    }`}
+                  >
+                    <div class="flex items-start justify-between gap-4">
+                      <div class="space-y-3">
+                        <div class="flex items-center gap-2 text-sm font-mono text-gray-700">
+                          <span style={{ color: siteContent.accentColor }}>0{index + 1}</span>
+                          <span aria-hidden="true">•</span>
+                          <span>{caseLabel}</span>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900">
+                          {item.name}
+                        </h3>
+                        <p class="text-base sm:text-lg text-gray-600 leading-relaxed">
+                          {item.description}
+                        </p>
+                        {item.skills && item.skills.length > 0 && (
+                          <div class="flex flex-wrap gap-1.5 sm:gap-2">
+                            {item.skills.map((skill) => (
+                              <span class="px-2.5 sm:px-3 py-1 sm:py-1.5 bg-gray-900 text-white rounded-md sm:rounded-lg text-xs sm:text-sm font-medium transition-all duration-300">
+                                {skill}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+
+                      {effectiveLink && (
+                        <span class="mt-1 inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-900 text-white transition group-hover:bg-gray-800">
+                          <svg
+                            class="h-4 w-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M7 17L17 7M17 7H7M17 7V17"
+                            />
+                          </svg>
+                        </span>
+                      )}
+                    </div>
+                    {effectiveLink && (
+                      <div class="mt-4 flex items-center gap-2 text-sm font-semibold text-gray-800">
+                        <span>{linkLabel}</span>
+                        <span aria-hidden="true">→</span>
+                      </div>
+                    )}
+                  </Component>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

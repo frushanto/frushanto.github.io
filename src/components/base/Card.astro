@@ -1,0 +1,14 @@
+---
+interface Props {
+  isHoverable?: boolean;
+  class?: string;
+}
+
+const { isHoverable = true, class: className } = Astro.props;
+---
+
+<div
+  class={`p-4 sm:p-5 md:p-6 bg-surface-primary text-text-primary rounded-lg border border-border transition-all duration-300 ${isHoverable ? 'hover:shadow-md' : ''} ${className || ''}`}
+>
+  <slot />
+</div>

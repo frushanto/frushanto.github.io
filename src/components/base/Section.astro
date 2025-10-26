@@ -1,0 +1,19 @@
+---
+interface Props {
+  id?: string;
+  hasBg?: boolean;
+  class?: string;
+}
+
+const { id, hasBg = false, class: className } = Astro.props;
+const bgClass = hasBg
+  ? 'bg-surface-secondary'
+  : 'bg-surface-primary';
+---
+
+<section
+  {id}
+  class={`p-section-mobile sm:p-section-tablet md:p-section-desktop lg:p-section-wide ${bgClass} text-text-primary transition-colors duration-200 ${className || ''}`}
+>
+  <slot />
+</section>

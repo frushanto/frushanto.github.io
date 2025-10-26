@@ -1,0 +1,71 @@
+---
+import { getSiteContent } from "../content/utils";
+import { t, type Language } from "../i18n/utils";
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = 'en' } = Astro.props as Props;
+const siteContent = await getSiteContent(lang);
+const serviceHighlights = [
+  lang === 'de'
+    ? 'Architektur-Reviews, Roadmaps, Refactoring-Strategien'
+    : 'Architecture reviews, roadmaps, refactoring strategies',
+  lang === 'de'
+    ? 'Embedded-Firmware + WPF-Tooling + ASP.NET Core Backends'
+    : 'Embedded firmware + WPF tooling + ASP.NET Core backends',
+  lang === 'de'
+    ? 'Testautomatisierung, CI/CD, Release- und Delivery-Pipelines'
+    : 'Test automation, CI/CD, release and delivery pipelines',
+];
+---
+
+<section id="expertise" class="p-8 sm:p-12 md:p-16 lg:p-24">
+  <div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+      <div class="lg:col-span-4">
+        <h2
+          class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900"
+        >
+          {t(lang, 'sections.expertise')}
+        </h2>
+        <div
+          class="w-[75px] h-[5px] mt-2 rounded-full"
+          style={`background-color: ${siteContent.accentColor}`}
+        >
+        </div>
+      </div>
+
+      <div class="lg:col-span-8 space-y-8">
+        <p class="text-lg sm:text-xl md:text-2xl leading-relaxed text-gray-600">
+          {siteContent.aboutMe}
+        </p>
+
+        <ul class="space-y-3">
+          {serviceHighlights.map((item) => (
+            <li class="flex items-start gap-3 text-base sm:text-lg text-gray-800">
+              <span
+                class="mt-1 inline-block h-2 w-2 rounded-full"
+                style={`background-color: ${siteContent.accentColor}`}
+              />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div class="pt-4">
+          <div class="flex flex-wrap gap-3">
+            {
+              siteContent.skills.map((skill) => (
+                <span class="px-3 sm:px-4 py-1.5 sm:py-2 bg-gray-100 text-gray-800 rounded-full text-sm sm:text-base md:text-lg font-medium hover:bg-gray-200 transition-colors duration-200">
+                  {skill}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

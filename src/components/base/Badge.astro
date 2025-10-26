@@ -1,0 +1,15 @@
+---
+interface Props {
+  variant?: 'default' | 'dark';
+  class?: string;
+}
+
+const { variant = 'default', class: className } = Astro.props;
+const classes = variant === 'dark'
+  ? 'bg-text-primary text-surface-primary'
+  : 'bg-surface-tertiary text-text-secondary';
+---
+
+<span class={`px-3 sm:px-4 py-1.5 sm:py-2 ${classes} rounded-full text-sm font-medium transition-colors ${className || ''}`}>
+  <slot />
+</span>

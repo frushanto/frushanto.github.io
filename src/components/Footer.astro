@@ -1,0 +1,147 @@
+---
+import { getSiteContent } from "../content/utils";
+import { t, type Language } from "../i18n/utils";
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = 'en' } = Astro.props as Props;
+const siteContent = await getSiteContent(lang);
+
+const hasLanguages = siteContent.languages && siteContent.languages.length > 0;
+const hasExperience = siteContent.projects && siteContent.projects.length > 0;
+const hasExpertise = siteContent.skills && siteContent.skills.length > 0;
+const contactHref = siteContent.social?.email
+  ? `mailto:${siteContent.social.email}`
+  : '#';
+const contactLabel = lang === 'de' ? 'Kontakt' : 'Contact';
+
+const getNavLink = (key: string) => t(lang, `nav.${key}`);
+const homeUrl = lang === 'de' ? '/de' : '/';
+const homeLabel = 'Home';
+---
+<footer id="contact" class="relative bg-gray-50 border-t border-gray-200">
+  <div class="mx-auto max-w-6xl px-6 py-12 lg:px-8">
+    <div class="flex flex-col gap-6">
+      <!-- First row: Name/title on left, legal links on right -->
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div class="flex flex-col gap-1">
+          <h3 class="text-2xl font-bold text-gray-800">
+            {siteContent.name}
+          </h3>
+          <p class="text-base text-gray-600">
+            {siteContent.title}
+          </p>
+        </div>
+        
+        <nav class="flex gap-x-4 text-xs">
+          <a
+            href={homeUrl}
+            class="text-gray-500 hover:text-gray-700 transition-colors"
+          >
+            {homeLabel}
+          </a>
+          <span class="text-gray-400">|</span>
+          <a
+            href={lang === 'de' ? '/de/impressum' : '/imprint'}
+            class="text-gray-500 hover:text-gray-700 transition-colors"
+          >
+            {t(lang, 'footer.imprint')}
+          </a>
+          <span class="text-gray-400">|</span>
+          <a
+            href={lang === 'de' ? '/de/datenschutz' : '/privacy'}
+            class="text-gray-500 hover:text-gray-700 transition-colors"
+          >
+            {t(lang, 'footer.privacy')}
+          </a>
+        </nav>
+      </div>
+
+      <!-- Second row: Social icons on left, copyright on right -->
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div class="flex gap-x-6">
+          <a
+            href={`mailto:${siteContent.social.email}`}
+            aria-label="Email"
+            class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
+            style={`--accent-color: ${siteContent.accentColor}`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="h-6 w-6"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path
+                d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"
+              ></path>
+              <path d="M3 7l9 6l9 -6"></path>
+            </svg>
+          </a>
+          <a
+            href={siteContent.social.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
+            style={`--accent-color: ${siteContent.accentColor}`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="h-6 w-6"
+              ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
+              ></path></svg
+            >
+          </a>
+        </div>
+
+        <p class="text-sm text-gray-500">
+          © {new Date().getFullYear()} {siteContent.name} / @frushanto. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decorative pattern -->
+  <div class="absolute inset-0 -z-10 overflow-hidden">
+    <svg
+      aria-hidden="true"
+      class="absolute bottom-0 left-0 w-full h-24 text-gray-100"
+    >
+      <pattern
+        id="footer-pattern"
+        x="0"
+        y="0"
+        width="100"
+        height="100"
+        patternUnits="userSpaceOnUse"
+      >
+        <path
+          d="M0 50 Q 25 40, 50 50 T 100 50"
+          stroke="currentColor"
+          stroke-width="0.5"
+          fill="none"
+          opacity="0.4"></path>
+      </pattern>
+      <rect width="100%" height="100%" fill="url(#footer-pattern)"></rect>
+    </svg>
+  </div>
+</footer>

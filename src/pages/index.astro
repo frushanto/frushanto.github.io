@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Languages from "../components/Languages.astro";
+import Experience from "../components/Experience.astro";
+import Footer from "../components/Footer.astro";
+
+const lang = 'en';
+---
+<BaseLayout lang={lang}>
+  <Header lang={lang} />
+  <section>
+    <Hero lang={lang} />
+    <About lang={lang} />
+    <Experience lang={lang} />
+    <Languages lang={lang} />
+  </section>
+  <Footer lang={lang} />
+</BaseLayout>

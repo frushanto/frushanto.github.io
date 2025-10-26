@@ -1,0 +1,118 @@
+{
+  "name": "Ivan Kozlov / @frushanto",
+  "title": "Software Architecture & Embedded/.NET Consultant",
+  "titleDisplay": "Software Architecture & Embedded/.NET Consultant",
+  "description": "Software architecture and embedded/.NET consulting — architecture reviews, firmware, WPF tooling, ASP.NET Core backends, test automation, CI/CD.",
+  "accentColor": "#1d4ed8",
+  "social": {
+    "email": "frushanto@gmail.com",
+    "linkedin": "https://linkedin.com/in/i-kozlov",
+    "github": "https://github.com/frushanto"
+  },
+  "aboutMe": "I help teams design, ship, and evolve reliable software — from embedded firmware architecture to .NET desktop and web systems. My focus is pragmatic software architecture, clean boundaries, testability, and delivery pipelines that keep products maintainable over years. I support clients with architecture reviews, new feature development, refactoring, test automation, CI/CD, and building internal tools (WPF) and web backends (ASP.NET).",
+  "skills": [
+    "Software architecture & system design (embedded + backend + desktop)",
+    "Embedded development (C/C++), ARM Cortex-M/R, bare-metal & RTOS",
+    ".NET development (C#): WPF desktop apps, ASP.NET Core web apps/APIs",
+    "Test automation: unit/integration, hardware-assisted testing, tooling",
+    "CI/CD, reproducible builds, release automation",
+    "Debugging & performance analysis (JTAG/SWD, tracing, profiling)",
+    "Interfaces & integration: CAN/CAN-FD, UART, SPI, I2C, Ethernet, BLE",
+    "Secure-by-design mindset for web/services (rate limiting, auth, hardening)",
+    "Codebase modernization: refactoring, modularization, dependency boundaries",
+    "PCB & schematic design for HW/SW integration (optional)"
+  ],
+  "languages": [
+    { "name": "Russian", "proficiency": "Native" },
+    { "name": "German", "proficiency": "C2 - Proficient" },
+    { "name": "English", "proficiency": "C1 - Advanced" }
+  ],
+  "projects": [
+    {
+      "name": "News Aggregator — ASP.NET Core, PostgreSQL, secure ingestion & UI",
+      "description": "Modern news aggregation system built with .NET 10, PostgreSQL, and ASP.NET Core Razor Pages. Collects content from RSS/Atom, Telegram channels, and Reddit with scheduled ingestion and deduplication. Includes admin tooling, infinite scroll UI, and production hardening (rate limiting, CAPTCHA, bot detection) for real-world deployment.",
+      "link": "https://catisquo.com",
+      "skills": [
+        ".NET 10",
+        "ASP.NET Core",
+        "PostgreSQL",
+        "Razor Pages",
+        "Entity Framework Core",
+        "Hangfire",
+        "Security Engineering"
+      ]
+    },
+    {
+      "name": "Telegram Weather Bot — Async Python service with clean architecture",
+      "description": "Open-source asynchronous Telegram bot providing real-time weather with subscriptions, multilingual support, and spam protection. Built with clean architecture principles and test-driven development for maintainability and scalability.",
+      "link": "https://github.com/frushanto/telegram-weather-bot-pub",
+      "skills": [
+        "Python",
+        "Async",
+        "Clean Architecture",
+        "Testing",
+        "Service Design"
+      ]
+    },
+    {
+      "name": "Safety-critical Embedded Platform — Architecture, Tooling & Delivery",
+      "description": "Led embedded software architecture work for a long-lived product platform, focusing on modular design, testability, and maintainability. Built supporting .NET tooling for configuration, automated testing, and firmware update workflows, turning engineering routines into repeatable, reliable processes. Improved delivery quality via CI/CD, structured verification strategy, and pragmatic refactoring to keep the codebase scalable.",
+      "skills": [
+        "C/C++",
+        "ARM Cortex-M",
+        "RTOS",
+        ".NET",
+        "C#",
+        "WPF",
+        "CI/CD",
+        "Test Automation",
+        "Debugging",
+        "System Integration"
+      ]
+    },
+    {
+      "name": "WPF Engineering Toolkit — Automation, Configuration & Test Orchestration",
+      "description": "Developed a WPF desktop suite to automate repetitive engineering workflows: device configuration, test execution, log collection, and release/firmware update steps. Built a modular architecture with pluggable tooling and libraries loaded via DI to keep the app extensible and maintainable, and integrated it into CI/CD pipelines for consistent results across environments.",
+      "skills": [
+        "C#",
+        ".NET",
+        "WPF",
+        "MVVM",
+        "Automation",
+        "CI/CD",
+        "Testing",
+        "UX for engineering tools"
+      ]
+    },
+    {
+      "name": "Embedded Bring-up & Low-level Drivers — Stable Interfaces & Diagnostics",
+      "description": "Implemented low-level firmware components and diagnostics to enable stable device bring-up and reliable communication with peripherals. Built reproducible debug workflows (instrumentation, logging, tracing) and hardened the code for maintainability by introducing clearer abstractions and integration tests where practical.",
+      "skills": [
+        "C/C++",
+        "Bare-Metal",
+        "RTOS",
+        "Low-Level Drivers",
+        "Debugging",
+        "SPI/I2C/UART",
+        "Diagnostics",
+        "Integration Testing"
+      ]
+    },
+    {
+      "name": "foxBMS 2 — Microcontroller Porting & Bare-metal Foundation (open-source)",
+      "description": "Contributed to an open-source embedded platform by implementing bare-metal foundations and microcontroller bring-up components. Focused on reliable low-level building blocks and integration readiness rather than domain-specific features.",
+      "link": "https://github.com/foxBMS/foxbms-2",
+      "skills": [
+        "C",
+        "ARM Cortex-R",
+        "Bare-Metal",
+        "Low-Level Drivers",
+        "Debugging",
+        "Toolchain"
+      ]
+    }
+  ],
+  "experience": [],
+  "education": [],
+  "hobbies": []
+}

@@ -1,0 +1,256 @@
+---
+import { getLocaleFromPathname } from '../config/locales';
+import { buildLocalizedUrl } from '../config/shared';
+import { t } from '../i18n/utils';
+
+const pathname = new URL(Astro.request.url).pathname;
+const locale = getLocaleFromPathname(pathname);
+const lang = locale.code;
+const translate = (key: string) => t(lang, `notFound.${key}`);
+const pageTitle = translate('title');
+const heading = translate('heading');
+const message = translate('message');
+const description = translate('description');
+const backHome = translate('backHome');
+const homeHref = buildLocalizedUrl(lang);
+---
+
+<!doctype html>
+<html lang={locale.hrefLang}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;0,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      html {
+        height: 100%;
+      }
+      
+      body {
+        height: 100%;
+        font-family: 'IBM Plex Mono', monospace;
+        background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 24px;
+      }
+      
+      main {
+        width: 100%;
+        max-width: 512px;
+      }
+
+      .container {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .emoji-box {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 96px;
+        height: 96px;
+        background-color: #eff6ff;
+        border-radius: 50%;
+        margin: 0 auto 32px;
+      }
+
+      .emoji-box span {
+        font-size: 48px;
+      }
+
+      .heading-section {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .heading-404 {
+        font-size: 96px;
+        font-weight: 700;
+        background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+        margin: 0;
+      }
+
+      .heading-text {
+        font-size: 32px;
+        font-weight: 700;
+        color: #111827;
+        line-height: 1.2;
+        margin: 0;
+      }
+
+      .message-section {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 16px 0;
+      }
+
+      .message-main {
+        font-size: 18px;
+        color: #374151;
+        font-weight: 500;
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      .message-sub {
+        font-size: 16px;
+        color: #6b7280;
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      .divider {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px 0;
+      }
+
+      .divider-line {
+        flex: 1;
+        height: 1px;
+        background-color: #e5e7eb;
+      }
+
+      .divider-dot {
+        color: #9ca3af;
+        font-size: 14px;
+      }
+
+      .button-wrapper {
+        padding-top: 16px;
+      }
+
+      .btn-home {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 16px 32px;
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        color: white;
+        font-weight: 600;
+        font-size: 16px;
+        border-radius: 8px;
+        border: none;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+      }
+
+      .btn-home:hover {
+        background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.4);
+      }
+
+      .btn-home:active {
+        transform: translateY(0);
+      }
+
+      .decorative-dots {
+        margin-top: 64px;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+
+      .dot-1 {
+        background-color: #60a5fa;
+      }
+
+      .dot-2 {
+        background-color: #c084fc;
+      }
+
+      .dot-3 {
+        background-color: #60a5fa;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 16px;
+        }
+        
+        .heading-404 {
+          font-size: 64px;
+        }
+        
+        .heading-text {
+          font-size: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <div class="emoji-box">
+          <span>🚀</span>
+        </div>
+
+        <div class="heading-section">
+          <h1 class="heading-404">404</h1>
+          <h2 class="heading-text">{heading}</h2>
+        </div>
+
+        <div class="message-section">
+          <p class="message-main">{message}</p>
+          <p class="message-sub">{description}</p>
+        </div>
+
+        <div class="divider">
+          <div class="divider-line"></div>
+          <div class="divider-dot">•</div>
+          <div class="divider-line"></div>
+        </div>
+
+        <div class="button-wrapper">
+          <a href={homeHref} class="btn-home">
+            <span>{backHome}</span>
+            <span>→</span>
+          </a>
+        </div>
+
+        <div class="decorative-dots">
+          <div class="dot dot-1"></div>
+          <div class="dot dot-2"></div>
+          <div class="dot dot-3"></div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
+

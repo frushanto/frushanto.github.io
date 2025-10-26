@@ -1,0 +1,27 @@
+{
+  "nav": {
+    "expertise": "Expertise",
+    "experience": "Erfahrung",
+    "languages": "Sprachen",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "greeting": "Hallo! 👋"
+  },
+  "sections": {
+    "expertise": "Expertise & Leistungen",
+    "experience": "Erfahrung",
+    "languages": "Sprachen"
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "heading": "404 - Hoppla! 🤔",
+    "message": "Es sieht aus, als hätten Sie sich in unbekanntes Gebiet begeben.",
+    "description": "Die gesuchte Seite existiert nicht. Aber keine Sorge, Sie können jederzeit nach Hause zurückkehren!",
+    "backHome": "Zurück zur Startseite"
+  },
+  "footer": {
+    "imprint": "Impressum",
+    "privacy": "Datenschutz"
+  }
+}

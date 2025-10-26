@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const lang = 'de';
+---
+
+<BaseLayout lang={lang} title="Impressum">
+  <Header lang={lang} showHome={true} isStaticPage={true} />
+  <main class="flex-grow bg-white">
+    <div class="mx-auto max-w-4xl px-6 py-16 lg:px-8">
+      <article class="prose prose-gray max-w-none">
+        <h1 class="text-4xl font-bold text-gray-900 mb-8">Impressum</h1>
+        
+        <p class="text-gray-600 mb-8">
+          Angaben gemäß § 5 DDG (Deutschland)
+        </p>
+
+        <div class="space-y-2 text-gray-700">
+          <p>Ivan Kozlov</p>
+          <p>E-Mail: <a href="mailto:frushanto@gmail.com" class="text-blue-600 hover:underline">frushanto@gmail.com</a></p>
+        </div>
+      </article>
+    </div>
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>

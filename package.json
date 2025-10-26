@@ -1,0 +1,29 @@
+{
+  "name": "frushanto-portfolio",
+  "description": "Ivan Kozlov - Portfolio website showcasing embedded systems engineering expertise",
+  "author": "Ivan Kozlov",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "preview:host": "astro preview --host",
+    "astro": "astro"
+  },
+  "keywords": [
+    "portfolio",
+    "astro",
+    "tailwindcss",
+    "embedded-systems",
+    "engineer"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@astrojs/sitemap": "^3.6.0",
+    "@tailwindcss/vite": "^4.1.11",
+    "astro": "^5.12.3",
+    "astro-robots-txt": "^1.0.0",
+    "tailwindcss": "^4.1.11"
+  }
+}
