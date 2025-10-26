@@ -1,0 +1,21 @@
+{
+  "nav": {
+    "about": "Über mich",
+    "languages": "Sprachen",
+    "projects": "Öffentliche Projekte",
+    "experience": "Erfahrung",
+    "education": "Bildung",
+    "hobbies": "Hobbys"
+  },
+  "hero": {
+    "greeting": "Hallo! 👋"
+  },
+  "sections": {
+    "about": "Über mich",
+    "languages": "Sprachen",
+    "projects": "Öffentliche Projekte",
+    "experience": "Erfahrung",
+    "education": "Bildung",
+    "hobbies": "Hobbys"
+  }
+}

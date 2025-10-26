@@ -1,0 +1,100 @@
+---
+import { type Language } from '../config';
+import { siteConfig as defaultConfig, getSiteConfig } from '../config';
+import '../styles/global.css';
+
+interface Props {
+  lang: Language;
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const { lang, title, description, ogImage } = Astro.props;
+const siteConfig = getSiteConfig(lang);
+
+const fullTitle = title ? `${title} - ${siteConfig.name}` : `${siteConfig.name} - ${siteConfig.title}`;
+const fullDescription = description || siteConfig.description;
+const baseUrl = 'https://frushanto.com';
+const canonicalUrl = lang === 'en' 
+  ? `${baseUrl}/` 
+  : `${baseUrl}/de/`;
+const ogImageUrl = ogImage || `${baseUrl}/og.png`;
+---
+
+<!doctype html>
+<html lang={lang === 'de' ? 'de' : 'en'}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Basic Meta Tags -->
+    <meta name="description" content={fullDescription} />
+    <title>{fullTitle}</title>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalUrl} />
+    
+    <!-- Alternate Language Links -->
+    <link rel="alternate" hreflang="en" href="https://frushanto.com/" />
+    <link rel="alternate" hreflang="de" href="https://frushanto.com/de/" />
+    <link rel="alternate" hreflang="x-default" href="https://frushanto.com/" />
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={fullDescription} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={lang === 'de' ? 'de_DE' : 'en_US'} />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={fullDescription} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: siteConfig.name,
+      url: canonicalUrl,
+      image: ogImageUrl,
+      description: fullDescription,
+      jobTitle: siteConfig.title,
+      sameAs: [
+        siteConfig.social?.github || '',
+        siteConfig.social?.linkedin || '',
+      ].filter(Boolean),
+      contact: siteConfig.social?.email 
+        ? {
+            '@type': 'ContactPoint',
+            contactType: 'Personal',
+            email: siteConfig.social.email
+          }
+        : undefined,
+    })}></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
