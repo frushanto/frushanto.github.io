@@ -85,9 +85,14 @@ npm run build
 
 # Preview production build
 npm run preview
+
+# Preview production build with network access (e.g., for mobile testing)
+npm run preview:host
 ```
 
 Development server runs at `http://localhost:4321`
+
+To validate the production output locally, first build the project (`npm run build`), then start the preview server bound to your network interface with `npm run preview:host`. The command is equivalent to `npm run preview -- --host` and makes the site available at `http://0.0.0.0:4321`, allowing access from other devices on the same network.
 
 ## 🌐 Deployment
 
