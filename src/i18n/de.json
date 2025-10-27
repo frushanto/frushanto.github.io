@@ -17,5 +17,12 @@
     "experience": "Erfahrung",
     "education": "Studium",
     "hobbies": "Hobbys"
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "heading": "404 - Hoppla! 🤔",
+    "message": "Es sieht aus, als hätten Sie sich in unbekanntes Gebiet begeben.",
+    "description": "Die gesuchte Seite existiert nicht. Aber keine Sorge, Sie können jederzeit nach Hause zurückkehren!",
+    "backHome": "Zurück zur Startseite"
   }
 }

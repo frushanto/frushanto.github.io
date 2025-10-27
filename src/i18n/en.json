@@ -17,5 +17,12 @@
     "experience": "Experience",
     "education": "Education",
     "hobbies": "Hobbies"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "heading": "404 - Oops! 🤔",
+    "message": "It looks like you've ventured into unknown territory.",
+    "description": "The page you're looking for doesn't exist. But don't worry, you can always return home!",
+    "backHome": "Back to Home"
   }
 }
