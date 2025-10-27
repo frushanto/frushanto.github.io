@@ -1,6 +1,7 @@
 ---
 import { type Language } from '../config';
 import { getSiteConfig } from '../config';
+import { buildAbsoluteUrl, buildLocalizedUrl } from '../config/shared';
 import '../styles/global.css';
 
 interface Props {
@@ -15,11 +16,11 @@ const siteConfig = getSiteConfig(lang);
 
 const fullTitle = title ? `${title} - ${siteConfig.name}` : `${siteConfig.name} - ${siteConfig.title}`;
 const fullDescription = description || siteConfig.description;
-const baseUrl = 'https://frushanto.github.io';
-const canonicalUrl = lang === 'en'
-  ? `${baseUrl}/`
-  : `${baseUrl}/de/`;
-const ogImageUrl = ogImage || `${baseUrl}/og.png`;
+const canonicalUrl = buildLocalizedUrl(lang);
+const alternateEnUrl = buildLocalizedUrl('en');
+const alternateDeUrl = buildLocalizedUrl('de');
+const defaultOgImageUrl = buildAbsoluteUrl('/og.png');
+const ogImageUrl = ogImage ? buildAbsoluteUrl(ogImage) : defaultOgImageUrl;
 const hasHeadSlot = Astro.slots.has('head');
 ---
 
@@ -35,9 +36,9 @@ const hasHeadSlot = Astro.slots.has('head');
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- Alternate Language Links -->
-    <link rel="alternate" hreflang="en" href="https://frushanto.github.io/" />
-    <link rel="alternate" hreflang="de" href="https://frushanto.github.io/de/" />
-    <link rel="alternate" hreflang="x-default" href="https://frushanto.github.io/" />
+    <link rel="alternate" hreflang="en" href={alternateEnUrl} />
+    <link rel="alternate" hreflang="de" href={alternateDeUrl} />
+    <link rel="alternate" hreflang="x-default" href={alternateEnUrl} />
 
     <!-- Open Graph Tags -->
     <meta property="og:type" content="website" />

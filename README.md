@@ -91,6 +91,21 @@ npm run preview
 
 Development server runs at `http://localhost:4321`
 
+## 🌐 Deployment
+
+### GitHub Pages Domain Configuration
+
+1. Set the canonical domain in `src/config/shared.ts` via `sharedConfig.baseUrl`. Use the full URL without a trailing slash (for example, `https://your-name.github.io` or `https://example.com`). Leaving this value empty makes the build fall back to `PUBLIC_BASE_URL`, then `import.meta.env.SITE`, and finally relative URLs.
+2. Ensure the build environment exposes the same domain through the `PUBLIC_BASE_URL` variable so that `astro.config.mjs` and the runtime stay in sync. In GitHub Actions you can add:
+
+   ```yaml
+   env:
+     PUBLIC_BASE_URL: https://your-name.github.io
+   ```
+
+   For project pages, include the repository segment (e.g., `https://your-name.github.io/portfolio`).
+3. When using a custom domain on GitHub Pages, configure the domain in the repository settings (and the optional `CNAME` file) to match the `baseUrl` value so that canonical, Open Graph, and hreflang links stay correct.
+
 ## 📝 Updating Content
 
 All content is managed through TypeScript config files in `src/config/`:

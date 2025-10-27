@@ -1,11 +1,13 @@
 ---
 import en from '../i18n/en.json';
 import de from '../i18n/de.json';
+import { buildLocalizedUrl } from '../config/shared';
 
 // Detect language from URL - if pathname starts with /de/, use German
 const pathname = new URL(Astro.request.url).pathname;
 const lang = pathname.startsWith('/de/') ? 'de' : 'en';
 const t = lang === 'de' ? de : en;
+const homeHref = buildLocalizedUrl(lang);
 ---
 
 <!doctype html>
@@ -231,7 +233,7 @@ const t = lang === 'de' ? de : en;
         </div>
 
         <div class="button-wrapper">
-          <a href="https://frushanto.com" class="btn-home">
+          <a href={homeHref} class="btn-home">
             <span>{t.notFound.backHome}</span>
             <span>→</span>
           </a>
