@@ -2,6 +2,8 @@
 
 A modern, minimalist portfolio website showcasing embedded systems engineering expertise, projects, and experience.
 
+> 🔀 **Fork Notice:** This project is a fork of [Ryan Fitzgerald's](https://github.com/RyanFitzgerald) original portfolio template. Original template created by Ryan Fitzgerald and shared under the MIT License.
+
 **Live Site:** [frushanto.com](https://frushanto.com)
 
 ## 🚀 Tech Stack
