@@ -1,6 +1,6 @@
 ---
 import { type Language } from '../config';
-import { siteConfig as defaultConfig, getSiteConfig } from '../config';
+import { getSiteConfig } from '../config';
 import '../styles/global.css';
 
 interface Props {
@@ -10,16 +10,17 @@ interface Props {
   ogImage?: string;
 }
 
-const { lang, title, description, ogImage } = Astro.props;
+const { lang, title, description, ogImage } = Astro.props as Props;
 const siteConfig = getSiteConfig(lang);
 
 const fullTitle = title ? `${title} - ${siteConfig.name}` : `${siteConfig.name} - ${siteConfig.title}`;
 const fullDescription = description || siteConfig.description;
-const baseUrl = 'https://frushanto.com';
-const canonicalUrl = lang === 'en' 
-  ? `${baseUrl}/` 
+const baseUrl = 'https://frushanto.github.io';
+const canonicalUrl = lang === 'en'
+  ? `${baseUrl}/`
   : `${baseUrl}/de/`;
 const ogImageUrl = ogImage || `${baseUrl}/og.png`;
+const hasHeadSlot = Astro.slots.has('head');
 ---
 
 <!doctype html>
@@ -29,19 +30,15 @@ const ogImageUrl = ogImage || `${baseUrl}/og.png`;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    
-    <!-- Basic Meta Tags -->
-    <meta name="description" content={fullDescription} />
-    <title>{fullTitle}</title>
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalUrl} />
-    
+
     <!-- Alternate Language Links -->
-    <link rel="alternate" hreflang="en" href="https://frushanto.com/" />
-    <link rel="alternate" hreflang="de" href="https://frushanto.com/de/" />
-    <link rel="alternate" hreflang="x-default" href="https://frushanto.com/" />
-    
+    <link rel="alternate" hreflang="en" href="https://frushanto.github.io/" />
+    <link rel="alternate" hreflang="de" href="https://frushanto.github.io/de/" />
+    <link rel="alternate" hreflang="x-default" href="https://frushanto.github.io/" />
+
     <!-- Open Graph Tags -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
@@ -57,7 +54,7 @@ const ogImageUrl = ogImage || `${baseUrl}/og.png`;
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={fullDescription} />
     <meta name="twitter:image" content={ogImageUrl} />
-    
+
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
@@ -87,6 +84,15 @@ const ogImageUrl = ogImage || `${baseUrl}/og.png`;
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet"
     />
+
+    {hasHeadSlot ? (
+      <slot name="head" />
+    ) : (
+      <Fragment>
+        <meta name="description" content={fullDescription} />
+        <title>{fullTitle}</title>
+      </Fragment>
+    )}
   </head>
   <body>
     <slot />

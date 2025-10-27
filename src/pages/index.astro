@@ -1,4 +1,5 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
@@ -8,40 +9,26 @@ import Experience from "../components/Experience.astro";
 import Education from "../components/Education.astro";
 import Hobbies from "../components/Hobbies.astro";
 import Footer from "../components/Footer.astro";
-import { siteConfig } from "../config";
-import "../styles/global.css";
+import { getSiteConfig } from "../config";
 
 const lang = 'en';
+const siteConfig = getSiteConfig(lang);
 ---
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
+<BaseLayout lang={lang}>
+  <Fragment slot="head">
     <meta name="description" content={siteConfig.description} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="alternate" hreflang="en" href="https://frushanto.github.io/" />
-    <link rel="alternate" hreflang="de" href="https://frushanto.github.io/de/" />
     <title>{siteConfig.name} - {siteConfig.title}</title>
-  </head>
-  <body>
-    <Header lang={lang} />
-    <section>
-      <Hero lang={lang} />
-      <About lang={lang} />
-      <Languages lang={lang} />
-      <Projects lang={lang} />
-      <Experience lang={lang} />
-      <Education lang={lang} />
-      <Hobbies lang={lang} />
-    </section>
-    <Footer lang={lang} />
-  </body>
-</html>
+  </Fragment>
+
+  <Header lang={lang} />
+  <section>
+    <Hero lang={lang} />
+    <About lang={lang} />
+    <Languages lang={lang} />
+    <Projects lang={lang} />
+    <Experience lang={lang} />
+    <Education lang={lang} />
+    <Hobbies lang={lang} />
+  </section>
+  <Footer lang={lang} />
+</BaseLayout>
