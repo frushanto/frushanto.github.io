@@ -1,12 +1,14 @@
 ---
 import { getSiteContent } from "../content/utils";
-import { t, type Language } from "../i18n/utils";
+import { locales } from "../config/locales";
+import { buildLocalizedPath } from "../config/shared";
+import { DEFAULT_LANGUAGE, t, type Language } from "../i18n/utils";
 
 interface Props {
   lang?: Language;
 }
 
-const { lang = 'en' } = Astro.props as Props;
+const { lang = DEFAULT_LANGUAGE } = Astro.props as Props;
 
 const siteContent = await getSiteContent(lang);
 
@@ -17,7 +19,7 @@ const hasLanguages = siteContent.languages && siteContent.languages.length > 0;
 const hasHobbies = siteContent.hobbies && siteContent.hobbies.length > 0;
 
 const getNavLink = (key: string) => t(lang, `nav.${key}`);
-const getLanguageUrl = (l: Language) => (l === 'en' ? '/' : '/de/');
+const getLanguageUrl = (localeCode: Language) => buildLocalizedPath(localeCode);
 ---
 
 <header
@@ -95,27 +97,22 @@ const getLanguageUrl = (l: Language) => (l === 'en' ? '/' : '/de/');
         )
       }
       <li class="ml-4 pl-4 border-l border-gray-300">
-        <div class="grid grid-cols-2 gap-0 bg-gray-100 rounded-lg p-1">
-          <a
-            href={getLanguageUrl('en')}
-            class={`w-10 h-10 flex items-center justify-center rounded transition-all font-medium text-sm ${
-              lang === 'en'
-                ? 'bg-white text-black shadow-sm'
-                : 'text-gray-600 hover:text-gray-800'
-            }`}
-          >
-            EN
-          </a>
-          <a
-            href={getLanguageUrl('de')}
-            class={`w-10 h-10 flex items-center justify-center rounded transition-all font-medium text-sm ${
-              lang === 'de'
-                ? 'bg-white text-black shadow-sm'
-                : 'text-gray-600 hover:text-gray-800'
-            }`}
-          >
-            DE
-          </a>
+        <div class="flex gap-1 bg-gray-100 rounded-lg p-1">
+          {locales.map((localeOption) => (
+            <a
+              href={getLanguageUrl(localeOption.code)}
+              class={`h-10 px-3 flex items-center justify-center rounded transition-all font-medium text-sm ${
+                lang === localeOption.code
+                  ? 'bg-white text-black shadow-sm'
+                  : 'text-gray-600 hover:text-gray-800'
+              }`}
+              lang={localeOption.hrefLang}
+              aria-label={localeOption.name}
+              title={localeOption.name}
+            >
+              {localeOption.code.toUpperCase()}
+            </a>
+          ))}
         </div>
       </li>
     </ul>

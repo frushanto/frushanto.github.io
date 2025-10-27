@@ -4,6 +4,7 @@
  */
 
 import type { Language } from '../i18n/utils';
+import { getLocaleConfig, getLocalePathPrefix } from './locales';
 
 export const sharedConfig = {
   baseUrl: "https://frushanto.com",
@@ -51,10 +52,11 @@ export const buildAbsoluteUrl = (path: string) => {
 
 export const buildLocalizedPath = (lang: Language, path = "/") => {
   const normalizedPath = ensureLeadingSlash(path);
-  const localePrefix = lang === "en" ? "" : `/${lang}`;
+  const locale = getLocaleConfig(lang);
+  const localePrefix = getLocalePathPrefix(locale.code);
 
   if (normalizedPath === "/") {
-    return localePrefix ? `${localePrefix}/` : "/";
+    return locale.canonicalPath;
   }
 
   return `${localePrefix}${normalizedPath}`;

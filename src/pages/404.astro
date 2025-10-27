@@ -1,23 +1,28 @@
 ---
-import en from '../i18n/en.json';
-import de from '../i18n/de.json';
+import { getLocaleFromPathname } from '../config/locales';
 import { buildLocalizedUrl } from '../config/shared';
+import { t } from '../i18n/utils';
 
-// Detect language from URL - if pathname starts with /de/, use German
 const pathname = new URL(Astro.request.url).pathname;
-const lang = pathname.startsWith('/de/') ? 'de' : 'en';
-const t = lang === 'de' ? de : en;
+const locale = getLocaleFromPathname(pathname);
+const lang = locale.code;
+const translate = (key: string) => t(lang, `notFound.${key}`);
+const pageTitle = translate('title');
+const heading = translate('heading');
+const message = translate('message');
+const description = translate('description');
+const backHome = translate('backHome');
 const homeHref = buildLocalizedUrl(lang);
 ---
 
 <!doctype html>
-<html lang={lang === 'de' ? 'de' : 'en'}>
+<html lang={locale.hrefLang}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{t.notFound.title}</title>
+    <title>{pageTitle}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -218,12 +223,12 @@ const homeHref = buildLocalizedUrl(lang);
 
         <div class="heading-section">
           <h1 class="heading-404">404</h1>
-          <h2 class="heading-text">{t.notFound.heading}</h2>
+          <h2 class="heading-text">{heading}</h2>
         </div>
 
         <div class="message-section">
-          <p class="message-main">{t.notFound.message}</p>
-          <p class="message-sub">{t.notFound.description}</p>
+          <p class="message-main">{message}</p>
+          <p class="message-sub">{description}</p>
         </div>
 
         <div class="divider">
@@ -234,7 +239,7 @@ const homeHref = buildLocalizedUrl(lang);
 
         <div class="button-wrapper">
           <a href={homeHref} class="btn-home">
-            <span>{t.notFound.backHome}</span>
+            <span>{backHome}</span>
             <span>→</span>
           </a>
         </div>

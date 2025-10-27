@@ -1,6 +1,7 @@
 ---
 import type { Language } from '../i18n/utils';
 import { getSiteContent } from '../content/utils';
+import { locales, getDefaultLocale, getLocaleConfig } from '../config/locales';
 import { buildAbsoluteUrl, buildLocalizedUrl } from '../config/shared';
 import { tokensToCss } from '../design';
 import '../styles/global.css';
@@ -19,16 +20,21 @@ const designTokenStyles = tokensToCss();
 
 const fullTitle = title ? `${title} - ${siteContent.name}` : `${siteContent.name} - ${siteContent.title}`;
 const fullDescription = description || siteContent.description;
+const localeConfig = getLocaleConfig(lang);
 const canonicalUrl = buildLocalizedUrl(lang);
-const alternateEnUrl = buildLocalizedUrl('en');
-const alternateDeUrl = buildLocalizedUrl('de');
+const alternateLinks = locales.map((locale) => ({
+  hrefLang: locale.hrefLang,
+  url: buildLocalizedUrl(locale.code),
+}));
+const defaultLocale = getDefaultLocale();
+const defaultAlternateUrl = buildLocalizedUrl(defaultLocale.code);
 const defaultOgImageUrl = buildAbsoluteUrl('/og.png');
 const ogImageUrl = ogImage ? buildAbsoluteUrl(ogImage) : defaultOgImageUrl;
 const hasHeadSlot = Astro.slots.has('head');
 ---
 
 <!doctype html>
-<html lang={lang === 'de' ? 'de' : 'en'}>
+<html lang={localeConfig.hrefLang}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -39,9 +45,10 @@ const hasHeadSlot = Astro.slots.has('head');
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- Alternate Language Links -->
-    <link rel="alternate" hreflang="en" href={alternateEnUrl} />
-    <link rel="alternate" hreflang="de" href={alternateDeUrl} />
-    <link rel="alternate" hreflang="x-default" href={alternateEnUrl} />
+    {alternateLinks.map((alternate) => (
+      <link rel="alternate" hreflang={alternate.hrefLang} href={alternate.url} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={defaultAlternateUrl} />
 
     <!-- Open Graph Tags -->
     <meta property="og:type" content="website" />
@@ -51,7 +58,7 @@ const hasHeadSlot = Astro.slots.has('head');
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content={lang === 'de' ? 'de_DE' : 'en_US'} />
+    <meta property="og:locale" content={localeConfig.ogLocale} />
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />

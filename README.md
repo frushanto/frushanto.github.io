@@ -38,11 +38,9 @@ src/
 ├── components/           # Page components (About, Projects, etc.)
 │   ├── base/            # Reusable base components
 │   └── *.astro
-├── config/              # Content configuration
-│   ├── en.ts            # English content & metadata
-│   ├── de.ts            # German content & metadata
-│   ├── shared.ts        # Shared config (social links, etc.)
-│   └── index.ts         # Config exports
+├── config/              # Global configuration helpers
+│   ├── locales.ts       # Locale definitions (codes, slugs, canonical paths)
+│   └── shared.ts        # Shared config (base URL, localized URL builders)
 ├── layouts/
 │   └── BaseLayout.astro # Main layout with SEO
 ├── pages/               # Route pages
@@ -108,23 +106,24 @@ Development server runs at `http://localhost:4321`
 
 ## 📝 Updating Content
 
-All content is managed through TypeScript config files in `src/config/`:
+All localized content lives in JSON data files inside `src/content/site/`:
 
-### English Content (`src/config/en.ts`)
-```typescript
-export const siteConfigEN = {
-  name: "Your Name",
-  title: "Your Title",
-  description: "Site description",
-  // ... skills, projects, experience, education, hobbies
+### English Content (`src/content/site/en.json`)
+```jsonc
+{
+  "name": "Your Name",
+  "title": "Your Title",
+  "description": "Site description",
+  "skills": ["C", "Embedded", "Rust"],
+  // ... projects, experience, education, hobbies
 }
 ```
 
-### German Content (`src/config/de.ts`)
-```typescript
-export const siteConfigDE = {
-  name: "Your Name",
-  title: "Your Title (German)",
+### German Content (`src/content/site/de.json`)
+```jsonc
+{
+  "name": "Ihr Name",
+  "title": "Ihre Berufsbezeichnung",
   // ... same structure, German translations
 }
 ```
@@ -161,7 +160,19 @@ Sections are conditionally rendered — if you remove data from config, the sect
 
 ### Add New Skills/Projects
 
-Simply add to the respective arrays in `en.ts` and `de.ts`. Changes reflect immediately.
+Simply add to the respective arrays in `src/content/site/en.json` and `src/content/site/de.json`. Changes reflect immediately.
+
+### Add a New Locale
+
+Follow these steps to introduce another language variation:
+
+1. Duplicate an existing content file in `src/content/site/` (for example, copy `en.json`) and translate the values for the new language code.
+2. Create a matching translation file in `src/i18n/` (for example, `fr.json`) so that UI strings resolve through the `t()` helper.
+3. Register the locale in `src/config/locales.ts` by providing its language `code`, URL `slug`, human-readable `name`, and SEO metadata (`hrefLang`, `ogLocale`). The module derives the canonical root URL automatically, so navigation and SEO helpers stay consistent.
+4. Add a page entry under `src/pages/` that points to the new locale (for example, `src/pages/fr/index.astro`) and pass the language code to `BaseLayout`.
+5. Update the Astro configuration (`astro.config.mjs`) to include the new locale inside the `i18n.locales` array (and adjust `defaultLocale` if it changes).
+
+Once the locale is registered, the header language switcher, canonical URLs, and `<link rel="alternate">` tags are generated automatically from the locale configuration—no additional manual tweaks are required for SEO metadata.
 
 ## 🚢 Deployment
 
