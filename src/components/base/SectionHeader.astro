@@ -1,14 +1,16 @@
 ---
+import { tokenVars } from '../../design';
+
 interface Props {
   title: string;
-  accentColor: string;
+  accentColor?: string;
 }
 
-const { title, accentColor } = Astro.props;
+const { title, accentColor = tokenVars.colors.accent.base } = Astro.props;
 ---
 
 <div>
-  <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+  <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-text-primary">
     {title}
   </h2>
   <div

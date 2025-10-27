@@ -7,6 +7,9 @@ interface Props {
 const { href, class: className } = Astro.props;
 ---
 
-<a href={href} class={`text-gray-700 hover:text-black transition-colors font-medium ${className || ''}`}>
+<a
+  href={href}
+  class={`text-text-secondary hover:text-text-primary transition-colors font-medium ${className || ''}`}
+>
   <slot />
 </a>

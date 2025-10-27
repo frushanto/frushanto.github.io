@@ -2,6 +2,7 @@
 import type { Language } from '../i18n/utils';
 import { getSiteContent } from '../content/utils';
 import { buildAbsoluteUrl, buildLocalizedUrl } from '../config/shared';
+import { tokensToCss } from '../design';
 import '../styles/global.css';
 
 interface Props {
@@ -13,6 +14,8 @@ interface Props {
 
 const { lang, title, description, ogImage } = Astro.props as Props;
 const siteContent = await getSiteContent(lang);
+
+const designTokenStyles = tokensToCss();
 
 const fullTitle = title ? `${title} - ${siteContent.name}` : `${siteContent.name} - ${siteContent.title}`;
 const fullDescription = description || siteContent.description;
@@ -100,6 +103,7 @@ const hasHeadSlot = Astro.slots.has('head');
   </body>
 </html>
 
+<style is:global set:html={designTokenStyles}></style>
 <style>
   html {
     scroll-behavior: smooth;

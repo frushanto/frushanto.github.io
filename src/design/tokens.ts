@@ -1,13 +1,5 @@
-import { lightTheme } from './colors';
-import { typography } from './typography';
-import { spacing } from './spacing';
+import { designTokens } from './index';
 
-export const designTokens = {
-  light: lightTheme,
-  typography,
-  spacing,
-};
+export { designTokens, customProperties, tokenVars, tokensToCss } from './index';
 
-export const useTokens = () => {
-  return designTokens.light;
-};
+export const useTokens = () => designTokens;

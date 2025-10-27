@@ -6,8 +6,8 @@ interface Props {
 
 const { variant = 'default', class: className } = Astro.props;
 const classes = variant === 'dark'
-  ? 'bg-gray-900 text-white'
-  : 'bg-gray-100 text-gray-800';
+  ? 'bg-text-primary text-surface-primary'
+  : 'bg-surface-tertiary text-text-secondary';
 ---
 
 <span class={`px-3 sm:px-4 py-1.5 sm:py-2 ${classes} rounded-full text-sm font-medium transition-colors ${className || ''}`}>
