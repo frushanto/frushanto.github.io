@@ -9,17 +9,10 @@ import Experience from "../../components/Experience.astro";
 import Education from "../../components/Education.astro";
 import Hobbies from "../../components/Hobbies.astro";
 import Footer from "../../components/Footer.astro";
-import { getSiteConfig } from "../../config";
 
 const lang = 'de';
-const siteConfig = getSiteConfig(lang);
 ---
 <BaseLayout lang={lang}>
-  <Fragment slot="head">
-    <meta name="description" content={siteConfig.description} />
-    <title>{siteConfig.name} - {siteConfig.title}</title>
-  </Fragment>
-
   <Header lang={lang} />
   <section>
     <Hero lang={lang} />

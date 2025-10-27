@@ -3,18 +3,11 @@
  * These don't need to be duplicated in en.ts and de.ts
  */
 
+import type { Language } from '../i18n/utils';
+
 export const sharedConfig = {
-  name: "Ivan Kozlov / @frushanto",
-  social: {
-    email: "frushanto@gmail.com",
-    linkedin: "https://linkedin.com/in/i-kozlov",
-    github: "https://github.com/frushanto",
-  },
-  accentColor: "#1d4ed8",
   baseUrl: "https://frushanto.com",
 };
-
-type SupportedLanguage = "en" | "de";
 
 const trimTrailingSlash = (value: string) => value.replace(/\/+$/, "");
 const ensureLeadingSlash = (value: string) => (value.startsWith("/") ? value : `/${value}`);
@@ -56,7 +49,7 @@ export const buildAbsoluteUrl = (path: string) => {
   return baseUrl ? `${baseUrl}${normalizedPath}` : normalizedPath;
 };
 
-export const buildLocalizedPath = (lang: SupportedLanguage, path = "/") => {
+export const buildLocalizedPath = (lang: Language, path = "/") => {
   const normalizedPath = ensureLeadingSlash(path);
   const localePrefix = lang === "en" ? "" : `/${lang}`;
 
@@ -67,7 +60,7 @@ export const buildLocalizedPath = (lang: SupportedLanguage, path = "/") => {
   return `${localePrefix}${normalizedPath}`;
 };
 
-export const buildLocalizedUrl = (lang: SupportedLanguage, path = "/") => {
+export const buildLocalizedUrl = (lang: Language, path = "/") => {
   const localizedPath = buildLocalizedPath(lang, path);
   return buildAbsoluteUrl(localizedPath);
 };

@@ -1,13 +1,13 @@
 ---
-import { getSiteConfig } from "../config";
-import { t } from "../i18n/utils";
+import { getSiteContent } from "../content/utils";
+import { t, type Language } from "../i18n/utils";
 
 interface Props {
-  lang?: 'en' | 'de';
+  lang?: Language;
 }
 
-const { lang = 'en' } = Astro.props;
-const siteConfig = getSiteConfig(lang as 'en' | 'de');
+const { lang = 'en' } = Astro.props as Props;
+const siteContent = await getSiteContent(lang);
 ---
 
 <section id="about" class="p-8 sm:p-12 md:p-16 lg:p-24">
@@ -21,20 +21,20 @@ const siteConfig = getSiteConfig(lang as 'en' | 'de');
         </h2>
         <div
           class="w-[75px] h-[5px] mt-2 rounded-full"
-          style={`background-color: ${siteConfig.accentColor}`}
+          style={`background-color: ${siteContent.accentColor}`}
         >
         </div>
       </div>
 
       <div class="lg:col-span-8 space-y-8">
         <p class="text-lg sm:text-xl md:text-2xl leading-relaxed text-gray-600">
-          {siteConfig.aboutMe}
+          {siteContent.aboutMe}
         </p>
 
         <div class="pt-4">
           <div class="flex flex-wrap gap-3">
             {
-              siteConfig.skills.map((skill) => (
+              siteContent.skills.map((skill) => (
                 <span class="px-3 sm:px-4 py-1.5 sm:py-2 bg-gray-100 text-gray-800 rounded-full text-sm sm:text-base md:text-lg font-medium hover:bg-gray-200 transition-colors duration-200">
                   {skill}
                 </span>

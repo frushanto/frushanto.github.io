@@ -1,14 +1,14 @@
 ---
-import { getSiteConfig } from "../config";
-import { t } from "../i18n/utils";
+import { getSiteContent } from "../content/utils";
+import { t, type Language } from "../i18n/utils";
 
 interface Props {
-  lang?: 'en' | 'de';
+  lang?: Language;
 }
 
-const { lang = 'en' } = Astro.props;
-const siteConfig = getSiteConfig(lang as 'en' | 'de');
-const hasEducation = siteConfig.education && siteConfig.education.length > 0;
+const { lang = 'en' } = Astro.props as Props;
+const siteContent = await getSiteContent(lang);
+const hasEducation = siteContent.education && siteContent.education.length > 0;
 ---
 
 {
@@ -22,13 +22,13 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
             </h2>
             <div
               class="w-[75px] h-[5px] mt-2 rounded-full"
-              style={`background-color: ${siteConfig.accentColor}`}
+              style={`background-color: ${siteContent.accentColor}`}
             />
           </div>
 
           <div class="lg:col-span-8">
             <div class="space-y-8">
-              {siteConfig.education.map((edu) => (
+              {siteContent.education.map((edu) => (
                 <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-4 sm:p-5 md:p-6 hover:shadow-md transition-shadow duration-300">
                   <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
                     <div>
@@ -37,7 +37,7 @@ const hasEducation = siteConfig.education && siteConfig.education.length > 0;
                       </h3>
                       <p
                         class="text-base sm:text-lg"
-                        style={`color: ${siteConfig.accentColor}`}
+                        style={`color: ${siteContent.accentColor}`}
                       >
                         {edu.school}
                       </p>

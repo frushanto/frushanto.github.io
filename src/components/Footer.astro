@@ -1,22 +1,21 @@
 ---
-import { getSiteConfig } from "../config";
-import { t } from "../i18n/utils";
+import { getSiteContent } from "../content/utils";
+import { t, type Language } from "../i18n/utils";
 
 interface Props {
-  lang?: 'en' | 'de';
+  lang?: Language;
 }
 
-const { lang = 'en' } = Astro.props;
-const siteConfig = getSiteConfig(lang as 'en' | 'de');
+const { lang = 'en' } = Astro.props as Props;
+const siteContent = await getSiteContent(lang);
 
-const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
-const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
-const hasEducation = siteConfig.education && siteConfig.education.length > 0;
-const hasLanguages = siteConfig.languages && siteConfig.languages.length > 0;
-const hasHobbies = siteConfig.hobbies && siteConfig.hobbies.length > 0;
+const hasProjects = siteContent.projects && siteContent.projects.length > 0;
+const hasExperience = siteContent.experience && siteContent.experience.length > 0;
+const hasEducation = siteContent.education && siteContent.education.length > 0;
+const hasLanguages = siteContent.languages && siteContent.languages.length > 0;
+const hasHobbies = siteContent.hobbies && siteContent.hobbies.length > 0;
 
 const getNavLink = (key: string) => t(lang, `nav.${key}`);
-const getLanguageUrl = (l: string) => l === 'en' ? '/' : '/de/';
 ---
 
 <footer class="relative bg-gray-50 border-t border-gray-200">
@@ -26,17 +25,17 @@ const getLanguageUrl = (l: string) => l === 'en' ? '/' : '/de/';
     >
       <div class="flex flex-col gap-4">
         <h3 class="text-2xl font-bold text-gray-800">
-          {siteConfig.name}
+          {siteContent.name}
         </h3>
         <p class="text-base text-gray-600">
-          {siteConfig.title}
+          {siteContent.title}
         </p>
         <div class="flex gap-x-6">
           <a
-            href={`mailto:${siteConfig.social.email}`}
+            href={`mailto:${siteContent.social.email}`}
             aria-label="Email"
             class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
-            style={`--accent-color: ${siteConfig.accentColor}`}
+            style={`--accent-color: ${siteContent.accentColor}`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -58,12 +57,12 @@ const getLanguageUrl = (l: string) => l === 'en' ? '/' : '/de/';
             </svg>
           </a>
           <a
-            href={siteConfig.social.linkedin}
+            href={siteContent.social.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
             class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
-            style={`--accent-color: ${siteConfig.accentColor}`}
+            style={`--accent-color: ${siteContent.accentColor}`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -84,12 +83,12 @@ const getLanguageUrl = (l: string) => l === 'en' ? '/' : '/de/';
             >
           </a>
           <a
-            href={siteConfig.social.github}
+            href={siteContent.social.github}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
             class="text-gray-600 transition-colors duration-300 hover:text-[var(--accent-color)]"
-            style={`--accent-color: ${siteConfig.accentColor}`}
+            style={`--accent-color: ${siteContent.accentColor}`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -170,7 +169,7 @@ const getLanguageUrl = (l: string) => l === 'en' ? '/' : '/de/';
         </nav>
         <p class="text-sm text-gray-500">
           © {new Date().getFullYear()}
-          {siteConfig.name}. All rights reserved.
+          {siteContent.name}. All rights reserved.
         </p>
       </div>
     </div>

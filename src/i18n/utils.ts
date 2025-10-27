@@ -4,9 +4,14 @@ import de from './de.json';
 const translations = {
   en,
   de,
-};
+} as const;
 
-export type Language = 'en' | 'de';
+export type Language = keyof typeof translations;
+export const DEFAULT_LANGUAGE: Language = 'en';
+
+const isLanguage = (value: string | undefined): value is Language => {
+  return value !== undefined && value in translations;
+};
 
 export const getTranslation = (lang: Language, key: string): string => {
   const keys = key.split('.');
@@ -20,7 +25,7 @@ export const getTranslation = (lang: Language, key: string): string => {
 };
 
 export const getLanguage = (lang: string | undefined): Language => {
-  return lang === 'de' ? 'de' : 'en';
+  return isLanguage(lang) ? lang : DEFAULT_LANGUAGE;
 };
 
 export const t = (lang: Language, key: string): string => {

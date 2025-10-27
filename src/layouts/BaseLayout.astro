@@ -1,6 +1,6 @@
 ---
-import { type Language } from '../config';
-import { getSiteConfig } from '../config';
+import type { Language } from '../i18n/utils';
+import { getSiteContent } from '../content/utils';
 import { buildAbsoluteUrl, buildLocalizedUrl } from '../config/shared';
 import '../styles/global.css';
 
@@ -12,10 +12,10 @@ interface Props {
 }
 
 const { lang, title, description, ogImage } = Astro.props as Props;
-const siteConfig = getSiteConfig(lang);
+const siteContent = await getSiteContent(lang);
 
-const fullTitle = title ? `${title} - ${siteConfig.name}` : `${siteConfig.name} - ${siteConfig.title}`;
-const fullDescription = description || siteConfig.description;
+const fullTitle = title ? `${title} - ${siteContent.name}` : `${siteContent.name} - ${siteContent.title}`;
+const fullDescription = description || siteContent.description;
 const canonicalUrl = buildLocalizedUrl(lang);
 const alternateEnUrl = buildLocalizedUrl('en');
 const alternateDeUrl = buildLocalizedUrl('de');
@@ -60,20 +60,20 @@ const hasHeadSlot = Astro.slots.has('head');
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'Person',
-      name: siteConfig.name,
+      name: siteContent.name,
       url: canonicalUrl,
       image: ogImageUrl,
       description: fullDescription,
-      jobTitle: siteConfig.title,
+      jobTitle: siteContent.title,
       sameAs: [
-        siteConfig.social?.github || '',
-        siteConfig.social?.linkedin || '',
+        siteContent.social?.github || '',
+        siteContent.social?.linkedin || '',
       ].filter(Boolean),
-      contact: siteConfig.social?.email 
+      contact: siteContent.social?.email
         ? {
             '@type': 'ContactPoint',
             contactType: 'Personal',
-            email: siteConfig.social.email
+            email: siteContent.social.email
           }
         : undefined,
     })}></script>

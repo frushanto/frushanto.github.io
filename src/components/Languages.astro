@@ -1,13 +1,13 @@
 ---
-import { getSiteConfig } from "../config";
-import { t } from "../i18n/utils";
+import { getSiteContent } from "../content/utils";
+import { t, type Language } from "../i18n/utils";
 
 interface Props {
-  lang?: 'en' | 'de';
+  lang?: Language;
 }
 
-const { lang = 'en' } = Astro.props;
-const siteConfig = getSiteConfig(lang as 'en' | 'de');
+const { lang = 'en' } = Astro.props as Props;
+const siteContent = await getSiteContent(lang);
 ---
 
 <section id="languages" class="p-8 sm:p-12 md:p-16 lg:p-24 bg-gray-50">
@@ -21,15 +21,15 @@ const siteConfig = getSiteConfig(lang as 'en' | 'de');
         </h2>
         <div
           class="w-[75px] h-[5px] mt-2 rounded-full"
-          style={`background-color: ${siteConfig.accentColor}`}
+          style={`background-color: ${siteContent.accentColor}`}
         >
         </div>
       </div>
 
       <div class="lg:col-span-8 space-y-6">
         {
-          siteConfig.languages.map((language) => (
-            <div class="border-l-4 pl-6 py-2" style={`border-color: ${siteConfig.accentColor}`}>
+          siteContent.languages.map((language) => (
+            <div class="border-l-4 pl-6 py-2" style={`border-color: ${siteContent.accentColor}`}>
               <h3 class="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900">
                 {language.name}
               </h3>
